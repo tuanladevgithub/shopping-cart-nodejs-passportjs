@@ -3,13 +3,17 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const shopRouter = require('./routes/shop');
+const indexRouter = require('./routes/index.route');
+const usersRouter = require('./routes/users.route');
+const shopRouter = require('./routes/products.route');
 
 
 const app = express();
+
+// connect to mongodb
+mongoose.connect('mongodb://admin:Fart_20011998@localhost:27017/shopping-cart?authSource=admin&readPreference=primary&ssl=false');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

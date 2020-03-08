@@ -3,29 +3,11 @@ extends ../layouts/layout
 block content
     h1 Index Product Shopping Cart
     .row.mt-5
-        .col-md-3.p-2
-            .card
-                img.card-img-top.img-responsive(src='https://picsum.photos/200', alt='...')
-                .card-body
-                    h5.card-title.product-name Card titleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                    p.card-text.description
-                        | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-                    a.btn.btn-primary(href='#') Add to cart
-
-        .col-md-3.p-2
-            .card
-                img.card-img-top.img-responsive(src='https://picsum.photos/200', alt='...')
-                .card-body
-                    h5.card-title.product-name Card title
-                    p.card-text.description
-                        | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-                    a.btn.btn-primary(href='#') Add to cart
-        
-        .col-md-3.p-2
-            .card
-                img.card-img-top.img-responsive(src='https://picsum.photos/200', alt='...')
-                .card-body
-                    h5.card-title.product-name Card title
-                    p.card-text.description
-                        | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-                    a.btn.btn-primary(href='#') Add to cart
+        each product in products
+            .col-md-3.p-2
+                .card
+                    img.card-img-top.img-responsive(src= product.imagePath, alt='...')
+                    .card-body
+                        h5.card-title.product-name= product.name
+                        p.card-text.description= product.description
+                        a.btn.btn-primary(href='#') Add to cart

@@ -11,6 +11,17 @@ passport.use('signup', new LocalStrategy({
     passReqToCallback: true
 },
     function (req, email, password, done) {
+        // validator request param:
+        // req.checkBody('email', 'Invalid email.').notEmpty().isEmail();
+        // req.checkBody('password', 'invalid password.').notEmpty().isLength({min: 6});
+        // let errors = req.validationErrors();
+        // if (errors) {
+        //     let messages = [];
+        //     errors.forEach(error => {
+        //         messages.push(error.msg);
+        //     });
+        //     return done(null, false, req.flash('error', messages));
+        // }
         User.findOne({ 'email': email }, async function (err, user) {
             // in case of any error when find user:
             if (err) {
@@ -26,8 +37,7 @@ passport.use('signup', new LocalStrategy({
                 newUser.name = req.body.name;
                 newUser.email = email;
                 try {
-                    // newUser.password = encryptPassword(password);
-                    newUser.password = await bcrypt.hash(password, 10);
+                    newUser.password = await bcrypt.hash(password, 10); // hash password with bcrypt
                     //save new user:
                     var result = await newUser.save();
                     return done(null, result);

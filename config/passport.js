@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user.model');
 
 //authenticate local-signup:
-passport.use('signup', new LocalStrategy({
+passport.use('local.signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
@@ -50,7 +50,7 @@ passport.use('signup', new LocalStrategy({
 ));
 
 //authenticate local-signin
-passport.use('signin', new LocalStrategy({
+passport.use('local.signin', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
 },

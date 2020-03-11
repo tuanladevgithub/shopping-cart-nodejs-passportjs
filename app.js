@@ -11,8 +11,11 @@ const validator = require('express-validator');
 
 
 const indexRouter = require('./routes/index.route');
+const authRouter = require('./routes/auth.route');
 const usersRouter = require('./routes/users.route');
 const shopRouter = require('./routes/products.route');
+
+const authMiddleware = require('./middlewares/auth.middleware');
 
 
 const app = express();
@@ -28,7 +31,7 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(validator());
+// app.use(validator());
 app.use(cookieParser());
 app.use(session({ secret: '1837kskfhidfdfdsqk123klows', resave: false, saveUninitialized: false}));
 app.use(flash());
@@ -36,8 +39,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function (req, res, next) {
+  res.locals.isSignin = req.isAuthenticated();
+  next();
+});
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/auth', authMiddleware.isLoggedIn, authRouter);
+app.use('/users', authMiddleware.requireAuthenticate, usersRouter);
 app.use('/products', shopRouter);
 
 // catch 404 and forward to error handler

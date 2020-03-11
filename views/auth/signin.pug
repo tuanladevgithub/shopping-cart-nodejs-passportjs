@@ -7,7 +7,7 @@ html
     link(rel="stylesheet", href='/stylesheets/fontawesome/css/all.min.css')
     link(rel='stylesheet', href='/stylesheets/user.css')
   body.bg-light
-    form.form-signin-signup(action='/users/signin', method='post')
+    form.form-signin-signup(action='/auth/signin', method='post')
       input(type="hidden", name="_csrf" value= csrfToken)
       h1.h3.mb-3.font-weight-normal Sign in
       if hasError 

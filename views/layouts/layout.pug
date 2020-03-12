@@ -19,9 +19,13 @@ html
                 a.nav-link(href='/')= Home 
                   span.sr-only (current)
               li.nav-item
+                a.nav-link(href='/products')
+                  |  Products
+              li.nav-item
                 a.nav-link(href='#')
                   i(class="fas fa-shopping-cart")
-                  |  Shopping Cart
+                  |  Shopping Cart  
+                  span(class="badge badge-pill badge-danger")= session.cart ? session.cart.totalQty : 0
               if isSignin
                 li.nav-item.dropdown
                   a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')

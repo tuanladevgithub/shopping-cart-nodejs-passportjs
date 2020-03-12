@@ -22,7 +22,7 @@ html
                 a.nav-link(href='/products')
                   |  Products
               li.nav-item
-                a.nav-link(href='#')
+                a.nav-link(href='/cart')
                   i(class="fas fa-shopping-cart")
                   |  Shopping Cart  
                   span(class="badge badge-pill badge-danger")= session.cart ? session.cart.totalQty : 0

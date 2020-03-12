@@ -15,6 +15,7 @@ const indexRouter = require('./routes/index.route');
 const authRouter = require('./routes/auth.route');
 const usersRouter = require('./routes/users.route');
 const shopRouter = require('./routes/products.route');
+const cartRouter = require('./routes/cart.route');
 
 const authMiddleware = require('./middlewares/auth.middleware');
 
@@ -58,6 +59,7 @@ app.use('/', indexRouter);
 app.use('/auth', authMiddleware.isLoggedIn, authRouter);
 app.use('/users', authMiddleware.requireAuthenticate, usersRouter);
 app.use('/products', shopRouter);
+app.use('/cart', cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -14,4 +14,15 @@ module.exports = function Cart(oldCart) {
         storedItem.price = storedItem.item.price * storedItem.qty;
         this.totalPrice += storedItem.item.price;
     };
+
+    this.getListItem = function () {
+        let arr = [];
+        for (let id in this.items) {
+            if (this.items.hasOwnProperty(id)) {
+                const element = this.items[id];
+                arr.push(element);
+            }
+        }
+        return arr;
+    }
 };
